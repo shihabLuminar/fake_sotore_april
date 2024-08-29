@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:folder_structure_sample_april/controller/home_screen_controller.dart';
+import 'package:folder_structure_sample_april/controller/product_details_screen_controller.dart';
 import 'package:folder_structure_sample_april/view/get_started_screen/get_started_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => HomeScreenController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductDetailsScreenController(),
         )
       ],
       child: MaterialApp(
