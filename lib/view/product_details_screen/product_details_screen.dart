@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folder_structure_sample_april/controller/cart_screen_controller.dart';
 import 'package:folder_structure_sample_april/controller/product_details_screen_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -68,6 +69,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25, vertical: 20),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
                               padding: EdgeInsets.symmetric(
@@ -99,10 +101,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                               ),
                             ),
-                            Container(
-                              color: Colors.red,
-                              height: 500,
-                            )
+                            Text(
+                              providerObj.productctModel?.title.toString() ??
+                                  "",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "${providerObj.productctModel?.rating?.rate.toString()}/5 Rating",
+                              style: TextStyle(
+                                  color: Colors.amber,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              providerObj.productctModel?.description
+                                      .toString() ??
+                                  "",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 16),
+                            ),
                           ],
                         ),
                       ),
@@ -124,7 +148,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     TextStyle(color: Colors.grey, fontSize: 16),
                               ),
                               Text(
-                                "RS 2500",
+                                "RS ${providerObj.productctModel?.price.toString()}",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -134,28 +158,46 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                           SizedBox(width: 50),
                           Expanded(
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 20),
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.local_mall_outlined,
-                                    color: Colors.white,
-                                    size: 25,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "Add to cart",
-                                    style: TextStyle(color: Colors.white),
-                                  )
-                                ],
+                            child: InkWell(
+                              onTap: () {
+                                context.read<CartScreenController>().addToCart(
+                                      title:
+                                          providerObj.productctModel?.title ??
+                                              "",
+                                      price:
+                                          providerObj.productctModel?.price ??
+                                              0,
+                                      des: providerObj
+                                              .productctModel?.description ??
+                                          "",
+                                      image:
+                                          providerObj.productctModel?.image ??
+                                              "",
+                                    );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.local_mall_outlined,
+                                      color: Colors.white,
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "Add to cart",
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           )

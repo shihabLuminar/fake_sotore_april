@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:folder_structure_sample_april/controller/home_screen_controller.dart';
+import 'package:folder_structure_sample_april/view/cart_screen/cart_screen.dart';
 import 'package:folder_structure_sample_april/view/product_details_screen/product_details_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -53,6 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontWeight: FontWeight.w800, fontSize: 30),
         ),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartScreen(),
+                    ));
+              },
+              icon: Icon(Icons.shopping_bag)),
           Stack(
             children: [
               Icon(

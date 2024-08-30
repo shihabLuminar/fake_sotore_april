@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:folder_structure_sample_april/model/cart_screen_model/cart_model.dart';
 import 'package:folder_structure_sample_april/model/product_details_models/product_details_model.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
 class ProductDetailsScreenController with ChangeNotifier {
@@ -17,4 +19,6 @@ class ProductDetailsScreenController with ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
+  addtoCart() {}
 }
