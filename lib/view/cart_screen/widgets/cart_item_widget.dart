@@ -9,10 +9,12 @@ class CartItemWidget extends StatelessWidget {
     this.onIncrement,
     this.onDecrement,
     this.onRemove,
+    this.image,
   });
   final String title;
   final String desc;
   final String qty;
+  final String? image;
   final VoidCallback? onIncrement;
   final VoidCallback? onDecrement;
   final VoidCallback? onRemove;
@@ -30,7 +32,7 @@ class CartItemWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  "https://images.pexels.com/photos/19738061/pexels-photo-19738061/free-photo-of-a-boat-is-parked-on-the-side-of-a-road.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                  image!,
                   height: 100,
                   width: 100,
                   fit: BoxFit.cover,

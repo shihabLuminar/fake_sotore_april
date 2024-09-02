@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folder_structure_sample_april/controller/cart_screen_controller.dart';
 import 'package:folder_structure_sample_april/controller/home_screen_controller.dart';
 import 'package:folder_structure_sample_april/controller/product_details_screen_controller.dart';
 import 'package:folder_structure_sample_april/model/cart_screen_model/cart_model.dart';
@@ -27,9 +28,13 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProductDetailsScreenController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartScreenController(),
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: GetStartedScreen(),
       ),
     );

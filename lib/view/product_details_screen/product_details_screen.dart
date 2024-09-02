@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folder_structure_sample_april/controller/cart_screen_controller.dart';
 import 'package:folder_structure_sample_april/controller/product_details_screen_controller.dart';
+import 'package:folder_structure_sample_april/view/cart_screen/cart_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -160,7 +161,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                context.read<CartScreenController>().addToCart(
+                                context
+                                    .read<CartScreenController>()
+                                    .addToCart(
+                                      id: providerObj.productctModel?.id,
                                       title:
                                           providerObj.productctModel?.title ??
                                               "",
@@ -173,7 +177,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       image:
                                           providerObj.productctModel?.image ??
                                               "",
-                                    );
+                                    )
+                                    .then(
+                                  (value) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CartScreen(),
+                                        ));
+                                  },
+                                );
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(
